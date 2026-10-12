@@ -2,9 +2,9 @@
 
 ## Overview
 
-This project demonstrates a combination of manual testing and UI test automation for a demo e-commerce web application. It covers Software Testing Life Cycle (STLC) activities, including test planning, test scenario creation, test case design, test execution, defect reporting, API testing, SQL validation, and test reporting.
+This project demonstrates manual testing and automated testing for a demo e-commerce web application. It covers Software Testing Life Cycle (STLC) activities, including test planning, test scenario creation, test case design, test execution, defect reporting, API testing, SQL validation exercises, and test reporting.
 
-The project also includes Selenium WebDriver automation using Java, JUnit 5, Maven, and the Page Object Model (POM) design pattern.
+The automation suite uses Selenium WebDriver with Java for UI testing and REST Assured with JUnit 5 for API testing.
 
 ## Project Modules
 
@@ -19,27 +19,26 @@ The project also includes Selenium WebDriver automation using Java, JUnit 5, Mav
 - Order Confirmation
 - Contact Us
 
-## Testing Performed
-
-### Manual Testing
+## Manual Testing
 
 - Functional Testing
 - Positive and Negative Testing
 - Boundary Value Testing
 - Smoke Testing
 - Regression Testing
+- Boundary Value Analysis
 - Test Case and Test Scenario Design
 - Requirements Traceability Matrix (RTM)
 - Defect Reporting and Tracking using Jira
 
-### UI Test Automation
+## UI Test Automation
 
-Automated browser tests were implemented using Selenium WebDriver and Java.
+Selenium WebDriver and Java are used to automate browser interactions with the demo e-commerce application.
 
-Current automated coverage includes:
+Current coverage includes:
 
 - Opening the e-commerce website
-- Verifying that the product search field is displayed
+- Verifying the product search field
 - Entering a search term
 - Searching for matching products
 - Searching for a term with no matching products
@@ -47,21 +46,39 @@ Current automated coverage includes:
 - Clearing the search field
 - Searching with different product terms
 
-**Latest verified execution:** 8 tests passed, with 0 failures, 0 errors, and 0 skipped tests.
+**Latest verified UI test count:** 8 passed.
 
-### API Testing
+## API Test Automation
 
-Postman was used to test the following API operations:
+REST Assured and JUnit 5 are used to automate HTTP API requests against the Fake Store API.
 
-- GET `/products`
-- GET `/products/1`
-- POST `/products`
-- PUT `/products/1`
-- DELETE `/products/1`
+Current coverage includes:
 
-### SQL Database Validation
+- GET `/products` — status code, JSON response, and product list validation
+- GET `/products` — product field validation
+- GET `/products/1` — single product validation
+- GET `/products/999999` — empty response validation for a nonexistent product
+- POST `/products` — created product response validation
+- PUT `/products/1` — updated product response validation
+- DELETE `/products/1` — delete response validation
 
-SQL validation exercises covered the following entities:
+Fake Store API is a practice API. POST, PUT, and DELETE tests validate the returned responses and do not establish that changes are permanently stored.
+
+**Latest verified API test count:** 7 passed.
+
+## Combined Automation Results
+
+The latest full Maven test run completed successfully:
+
+- Total tests: 15
+- Passed: 15
+- Failures: 0
+- Errors: 0
+- Skipped: 0
+
+## SQL Database Validation
+
+SQL validation exercises cover:
 
 - Users
 - Products
@@ -69,12 +86,13 @@ SQL validation exercises covered the following entities:
 - Orders
 - Payments
 
-The API practice and SQL validation activities are separate from the Selenium UI automation suite.
+The SQL exercises use a separate practice database and are not integrated into the Selenium or REST Assured test suites.
 
 ## Technology Stack and Tools
 
 - Java 17
 - Selenium WebDriver 4.39.0
+- REST Assured 5.5.6
 - JUnit 5.14.0
 - Maven
 - Page Object Model (POM)
@@ -98,14 +116,17 @@ src/
                     ├── BaseTest.java
                     ├── BrowserLaunchTest.java
                     ├── ProductSearchTest.java
+                    ├── api/
+                    │   └── ProductsApiTest.java
                     └── pages/
                         ├── HomePage.java
                         └── ProductsPage.java
 ```
 
 - `BaseTest.java` — shared browser setup and teardown.
-- `BrowserLaunchTest.java` — browser launch and basic search-field checks.
+- `BrowserLaunchTest.java` — browser launch and search-field checks.
 - `ProductSearchTest.java` — automated product-search scenarios.
+- `ProductsApiTest.java` — REST Assured API tests.
 - `HomePage.java` and `ProductsPage.java` — page interaction methods following the Page Object Model.
 
 ## Running the Automated Tests
@@ -115,17 +136,29 @@ src/
 - Java JDK 17 or compatible version
 - Maven
 - Google Chrome
-- Internet connection to access the demo application
+- Internet connection
 
-### Execute the test suite
+### Run all UI and API tests
 
-From the project root directory, run:
+From the project root directory, execute:
 
 ```bash
 mvn clean test
 ```
 
-Maven executes the JUnit test suite and generates test reports under:
+### Run only API tests
+
+```bash
+mvn -Dtest=ProductsApiTest test
+```
+
+### Run only UI tests
+
+```bash
+mvn -Dtest=BrowserLaunchTest,ProductSearchTest test
+```
+
+Maven generates test reports under:
 
 ```text
 target/surefire-reports/
@@ -133,7 +166,7 @@ target/surefire-reports/
 
 ## Jira Defect Tracking
 
-Jira was used to manage and track QA activities for the e-commerce application.
+Jira was used to manage QA activities for the e-commerce application.
 
 - Created and tracked verified defects
 - Documented reproduction steps, expected results, actual results, and test data
@@ -142,6 +175,12 @@ Jira was used to manage and track QA activities for the e-commerce application.
 - Managed defect priority, assignee, and status
 - Used Epic, Story, Subtask, Bug, Sprint, and Board features
 - Added retest comments to document defect reproduction
+
+## Postman API Testing
+
+The existing Postman collection and screenshots document API testing exercises for GET, POST, PUT, and DELETE operations.
+
+The Postman exercises are maintained separately from the REST Assured automation suite.
 
 ## Project Deliverables
 
@@ -156,8 +195,9 @@ Jira was used to manage and track QA activities for the e-commerce application.
 - SQL Validation Queries
 - Final Test Report
 - Selenium UI Automation Tests
+- REST Assured API Automation Tests
 - Maven Surefire Test Reports
 
 ## Outcome
 
-The project combines manual QA documentation, Jira-based defect tracking, Postman API testing, SQL validation exercises, and Selenium UI automation. The current automated suite contains eight verified passing tests covering browser launch and product-search behavior on the demo e-commerce application.
+The project combines manual QA documentation, Jira-based defect tracking, Postman API testing, SQL validation exercises, Selenium UI automation, and REST Assured API automation. The latest verified combined test run completed with 15 passing tests and no failures or errors.
