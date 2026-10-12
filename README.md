@@ -1,256 +1,294 @@
 # E-Commerce Web Application Testing
 
-## Overview
+A QA testing project demonstrating manual testing, defect tracking, API testing, database validation, UI automation, and continuous integration using Java, Selenium WebDriver, JUnit 5, Maven, and GitHub Actions.
 
-This project demonstrates manual testing and automated testing for a demo e-commerce web application. It covers Software Testing Life Cycle (STLC) activities, including test planning, test scenario creation, test case design, test execution, defect reporting, API testing, SQL validation exercises, and test reporting.
+**GitHub Repository:** [E-Commerce Web Application Testing](https://github.com/Asvitha-12/E-Commerce-Web-Application-Testing)
 
-The automation suite uses Selenium WebDriver with Java for UI testing and REST Assured with JUnit 5 for API testing. GitHub Actions runs the automated test suite in a CI environment, and Allure generates detailed test reports.
+## Project Overview
 
-## Project Modules
+This project demonstrates a structured QA workflow for an e-commerce application, covering manual test design, test execution, defect tracking, API validation, SQL practice, UI automation, and automated test execution through a CI pipeline.
 
-- User Registration
-- User Login
-- Logout
-- Product Search
-- Product Details
-- Shopping Cart
-- Checkout
-- Payment
-- Order Confirmation
-- Contact Us
+The project is organized into the following areas:
+
+- Manual testing and test documentation
+- UI automation using Selenium WebDriver
+- REST API testing using REST Assured
+- Database validation practice using SQL
+- Defect tracking using Jira
+- API request testing using Postman
+- Continuous integration using GitHub Actions
+- Test reporting using Allure
+
+## Technologies and Tools
+
+| Category | Tools and Technologies |
+|---|---|
+| Programming Language | Java 17 |
+| UI Automation | Selenium WebDriver |
+| Test Framework | JUnit 5 |
+| Build Tool | Maven |
+| API Automation | REST Assured |
+| API Testing | Postman |
+| Database | SQL, MySQL |
+| Defect Tracking | Jira |
+| CI/CD | GitHub Actions |
+| Test Reporting | Allure Report |
+| Version Control | Git, GitHub |
+| IDE | Eclipse / Visual Studio Code |
 
 ## Manual Testing
 
-- Functional Testing
-- Positive and Negative Testing
-- Boundary Value Testing
-- Smoke Testing
-- Regression Testing
-- Boundary Value Analysis
-- Test Case and Test Scenario Design
-- Requirements Traceability Matrix (RTM)
-- Defect Reporting and Tracking using Jira
+The manual testing module contains test documentation and test execution artifacts for the e-commerce application.
+
+### Testing Activities
+
+- Test scenario and test case design
+- Functional testing
+- Positive and negative testing
+- Smoke testing
+- Regression testing
+- Requirement Traceability Matrix (RTM)
+- Defect identification and reporting
+- Severity and priority classification
+
+### Test Documentation
+
+The repository includes testing documents such as:
+
+- Test Plan
+- Test Scenarios
+- Test Cases
+- Requirement Traceability Matrix
+- Smoke and Regression Testing documentation
+- Defect Reports
+- Test Execution Reports
 
 ## UI Test Automation
 
-Selenium WebDriver and Java automate browser interactions with the demo e-commerce application.
+UI automation is implemented using **Java, Selenium WebDriver, JUnit 5, Maven, and the Page Object Model (POM)**.
 
-Current coverage includes:
+The UI tests automate selected user workflows on [Automation Exercise](https://automationexercise.com/).
 
-- Opening the e-commerce website
-- Verifying the product search field
-- Entering a search term
-- Searching for matching products
-- Searching for a term with no matching products
-- Submitting an empty search
-- Clearing the search field
-- Searching with different product terms
+### Automated UI Test Coverage
 
-**Latest verified UI test count:** 8 passed.
+- Browser launch and application access
+- Product page navigation
+- Product search
+- Product-related UI validations
+- Other implemented browser and product workflow checks
 
-## API Test Automation
+The automation code uses reusable page classes to separate page interactions from test logic.
 
-REST Assured and JUnit 5 automate HTTP API requests against the [DummyJSON API](https://dummyjson.com/).
+### UI Test Results
 
-Current coverage includes:
+- Tests passed: 8
+- Tests failed: 0
 
-- GET `/products` — status code, JSON response, and product list validation
-- GET `/products` — product field validation
-- GET `/products/1` — single product validation
-- GET `/products/999999` — nonexistent product response validation
-- POST `/products/add` — created product response validation
-- PUT `/products/1` — updated product response validation
-- DELETE `/products/1` — delete response validation
+These results reflect the recorded local test execution.
 
-DummyJSON is a practice API. POST, PUT, and DELETE tests validate simulated responses and do not establish that changes are permanently stored.
+## REST API Test Automation
 
-**Latest verified API test count:** 7 passed.
+API automation is implemented using **REST Assured and JUnit 5** against the [DummyJSON API](https://dummyjson.com/).
+
+The API practice environment is separate from the UI application and does not share its backend.
+
+### API Test Coverage
+
+- GET `/products` — validate the response status, JSON response, product list, and required fields
+- GET `/products/1` — validate product details
+- GET `/products/999999` — validate the not-found response
+- POST `/products/add` — validate the simulated product creation response
+- PUT `/products/1` — validate the simulated product update response
+- DELETE `/products/1` — validate the simulated product deletion response
+
+### API Test Results
+
+- Tests passed: 7
+- Tests failed: 0
+
+**Note:** DummyJSON simulates write operations. Successful POST, PUT, and DELETE responses validate the API responses; they do not establish that changes are permanently stored.
+
+## Database Testing Using SQL
+
+The project includes SQL practice for database creation, table creation, data validation, and queries involving related tables.
+
+### Database Activities
+
+- Database and table creation
+- Table data validation
+- SELECT queries
+- Filtering and sorting records
+- JOIN queries for related data
+- Data verification using SQL
+
+The SQL practice database is independent of the Automation Exercise website and DummyJSON API. The project does not claim direct database integration with either external application.
+
+## API Testing with Postman
+
+Postman is used for sending API requests and validating responses.
+
+The repository includes a Postman collection for the API testing work. The collection can be imported into Postman to inspect and execute the saved requests.
+
+## Defect Tracking with Jira
+
+Jira is used to organize testing activities and track defects for the e-commerce testing project.
+
+**Jira project key:** `ECWAT`
+
+The project includes an epic, a functional testing story, subtasks for test execution, and verified defect tickets.
+
+Jira helps demonstrate issue tracking and the organization of QA activities.
 
 ## Combined Automation Results
 
-The latest verified full Maven test run completed successfully.
+The recorded local execution completed with the following results:
 
-| Result | Count |
-|---|---:|
-| Total tests | 15 |
-| Passed | 15 |
-| Failures | 0 |
-| Errors | 0 |
-| Skipped | 0 |
+| Test Suite | Passed | Failed |
+|---|---:|---:|
+| UI Automation | 8 | 0 |
+| API Automation | 7 | 0 |
+| **Total** | **15** | **0** |
+
+These results represent the documented execution at the time of testing. Test results may change if the application, test code, browser, or external API changes.
+
+## Automation Evidence
+
+### Allure Test Report
+
+The Allure dashboard provides a visual summary of the automated test execution.
+
+![Allure Report showing automated test results](Screenshots/Allure%20Report.png)
+
+### GitHub Actions CI
+
+The screenshot below documents the successful GitHub Actions workflow execution.
+
+![GitHub Actions CI workflow](Screenshots/GitHub%20Actions.png)
 
 ## Continuous Integration with GitHub Actions
 
-GitHub Actions automatically runs the UI and API test suites when changes are pushed to the `main` branch or a pull request targets `main`. The workflow can also be started manually.
+The project includes a GitHub Actions workflow that runs automatically on pushes and pull requests targeting the `main` branch. It can also be started manually using `workflow_dispatch`.
 
-The CI workflow:
+### CI Pipeline Steps
 
-1. Checks out the repository.
-2. Sets up Java 17 and Maven dependency caching.
-3. Sets up Chrome for browser automation.
-4. Runs the automated tests using Maven.
-5. Uploads Maven Surefire reports.
-6. Uploads raw Allure test results.
-7. Generates an Allure HTML report.
-8. Uploads the HTML report as a workflow artifact.
+1. Check out the repository.
+2. Set up Java 17.
+3. Set up Chrome for browser automation.
+4. Execute UI and API tests using Maven.
+5. Upload Maven Surefire test reports.
+6. Upload Allure test results.
+7. Install the Allure command-line tool.
+8. Generate the Allure HTML report.
+9. Upload the generated Allure report as a workflow artifact.
 
-**Latest verified CI status:** Successful. The workflow completed, and the Allure HTML report was generated and uploaded.
+### View the Workflow
 
-To view the workflow, visit the [GitHub Actions page](https://github.com/Asvitha-12/E-Commerce-Web-Application-Testing/actions).
+[Open the GitHub Actions page](https://github.com/Asvitha-12/E-Commerce-Web-Application-Testing/actions)
 
-### Accessing CI reports
-
-1. Open the GitHub Actions page.
-2. Select a successful workflow run.
-3. Locate the Artifacts section.
-4. Download `allure-html-report` or `maven-surefire-reports`.
-5. Extract the downloaded ZIP file.
-
-The Allure HTML report can be opened locally using `index.html`.
-
-## SQL Database Validation
-
-SQL validation exercises cover:
-
-- Users
-- Products
-- Cart
-- Orders
-- Payments
-
-The SQL exercises use a separate practice database and are not integrated into the Selenium or REST Assured test suites.
-
-## Technology Stack and Tools
-
-- Java 17
-- Selenium WebDriver 4.39.0
-- REST Assured 5.5.6
-- JUnit 5.14.0
-- Maven
-- Page Object Model (POM)
-- GitHub Actions
-- Allure Report
-- Postman
-- SQL and MySQL Workbench
-- Jira
-- Microsoft Excel
-- Microsoft Word
-- Google Chrome
-- Git and GitHub
+After a successful run, open the workflow run and check its **Artifacts** section to access the uploaded reports.
 
 ## Project Structure
 
 ```text
-src/
-└── test/
-    └── java/
-        └── com/
-            └── asvi/
-                └── qa/
-                    ├── BaseTest.java
-                    ├── BrowserLaunchTest.java
-                    ├── ProductSearchTest.java
-                    ├── api/
-                    │   └── ProductsApiTest.java
-                    └── pages/
-                        ├── HomePage.java
-                        └── ProductsPage.java
+E-Commerce-Web-Application-Testing/
+├── .github/
+│   └── workflows/
+│       └── maven-ci.yml
+├── Screenshots/
+│   ├── Allure Report.png
+│   └── GitHub Actions.png
+├── Test Cases/
+├── Test Scenarios/
+├── Test Plan/
+├── RTM/
+├── Defect Reports/
+├── Reports/
+├── Postman/
+├── SQL/
+├── src/
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── asvi/
+│                   └── qa/
+│                       ├── BaseTest.java
+│                       ├── BrowserLaunchTest.java
+│                       ├── ProductSearchTest.java
+│                       ├── api/
+│                       │   └── ProductsApiTest.java
+│                       └── pages/
+│                           ├── HomePage.java
+│                           └── ProductsPage.java
+├── pom.xml
+└── README.md
 ```
 
-- `BaseTest.java` — shared browser setup and teardown.
-- `BrowserLaunchTest.java` — browser launch and search-field checks.
-- `ProductSearchTest.java` — automated product-search scenarios.
-- `ProductsApiTest.java` — REST Assured API tests.
-- `HomePage.java` and `ProductsPage.java` — page interaction methods following the Page Object Model.
+The structure above highlights the main project areas. Some folders may contain additional files and supporting documentation.
 
-## Running the Automated Tests
+## Prerequisites
 
-### Prerequisites
+Install the following tools before running the automation tests:
 
-- Java JDK 17 or compatible version
-- Maven
+- Java JDK 17
+- Apache Maven
 - Google Chrome
-- Internet connection
+- Git
 
-### Run all UI and API tests
+The Allure CLI is required only when generating and opening the HTML report locally.
 
-From the project root directory, execute:
+## How to Run the Tests
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Asvitha-12/E-Commerce-Web-Application-Testing.git
+```
+
+### 2. Navigate to the project directory
+
+```bash
+cd E-Commerce-Web-Application-Testing
+```
+
+### 3. Run the automated tests
 
 ```bash
 mvn clean test
 ```
 
-### Run only API tests
+Maven compiles the test code and executes the configured UI and API test suites.
 
-```bash
-mvn -Dtest=ProductsApiTest test
-```
+### 4. Generate the Allure report
 
-### Run only UI tests
-
-```bash
-mvn -Dtest=BrowserLaunchTest,ProductSearchTest test
-```
-
-Maven generates test reports under:
-
-```text
-target/surefire-reports/
-```
-
-### Generate and open an Allure report locally
-
-After running the tests, generate the report:
+After the tests finish, run:
 
 ```bash
 allure generate allure-results --clean -o allure-report
 ```
 
-Open it in your browser:
+### 5. Open the Allure report
 
 ```bash
 allure open allure-report
 ```
 
-Allure Commandline must be installed to use these commands.
+These Allure commands require the Allure CLI to be installed and available on the system PATH.
 
-## Jira Defect Tracking
+## Key Learning Outcomes
 
-Jira was used to manage QA activities for the e-commerce application.
+- Creating and maintaining manual test documentation
+- Designing and executing functional test cases
+- Automating browser workflows using Selenium WebDriver
+- Applying the Page Object Model
+- Validating REST API responses using REST Assured
+- Writing SQL queries to verify database records
+- Tracking testing work and defects using Jira
+- Managing automation dependencies with Maven
+- Running automated tests in GitHub Actions
+- Generating and reviewing Allure test reports
 
-- Created and tracked verified defects
-- Documented reproduction steps, expected results, actual results, and test data
-- Attached screenshots as defect evidence
-- Linked defects to functional testing work items for traceability
-- Managed defect priority, assignee, and status
-- Used Epic, Story, Subtask, Bug, Sprint, and Board features
-- Added retest comments to document defect reproduction
+## Conclusion
 
-## Postman API Testing
+This project demonstrates practical QA activities across manual testing, UI automation, API testing, SQL validation practice, defect tracking, and continuous integration. It brings testing documentation and automation work together in a single repository and provides evidence of the recorded automated test results.
 
-The existing Postman collection and screenshots document API testing exercises for GET, POST, PUT, and DELETE operations.
-
-The Postman exercises are maintained separately from the REST Assured automation suite.
-
-## Project Deliverables
-
-- Test Plan
-- Test Scenarios
-- Test Cases
-- Defect Report
-- Smoke Testing Report
-- Regression Testing Report
-- Requirements Traceability Matrix (RTM)
-- API Testing Report
-- SQL Validation Queries
-- Final Test Report
-- Selenium UI Automation Tests
-- REST Assured API Automation Tests
-- Maven Surefire Test Reports
-- Allure HTML Test Report
-- GitHub Actions CI Workflow
-
-## Outcome
-
-The project combines manual QA documentation, Jira-based defect tracking, Postman API testing, SQL validation exercises, Selenium UI automation, REST Assured API automation, CI execution, and Allure reporting.
-
-The latest verified combined test run completed with **15 passing tests and no failures or errors**. GitHub Actions also completed successfully, generating and uploading the Allure HTML report.
+**Repository:** [Asvitha-12/E-Commerce-Web-Application-Testing](https://github.com/Asvitha-12/E-Commerce-Web-Application-Testing)
