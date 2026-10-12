@@ -1,3 +1,4 @@
+
 package com.asvi.qa.api;
 
 import org.junit.jupiter.api.Test;
@@ -9,11 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ProductsApiTest {
 
     private static final String BASE_URL =
-            "https://fakestoreapi.com";
+            "https://dummyjson.com";
 
     @Test
     void verifyGetProductsReturnsSuccess() {
-
         given()
             .baseUri(BASE_URL)
         .when()
@@ -21,12 +21,11 @@ public class ProductsApiTest {
         .then()
             .statusCode(200)
             .contentType(containsString("application/json"))
-            .body("$", not(empty()));
+            .body("products", not(empty()));
     }
 
     @Test
     void verifyGetProductsReturnsProductDetails() {
-
         var response =
             given()
                 .baseUri(BASE_URL)
@@ -37,18 +36,17 @@ public class ProductsApiTest {
                 .extract()
                 .response();
 
-        assertNotNull(response.jsonPath().getList("$"));
+        assertNotNull(response.jsonPath().getList("products"));
 
         response.then()
-            .body("[0].id", notNullValue())
-            .body("[0].title", not(emptyOrNullString()))
-            .body("[0].price", notNullValue())
-            .body("[0].category", not(emptyOrNullString()));
+            .body("products[0].id", notNullValue())
+            .body("products[0].title", not(emptyOrNullString()))
+            .body("products[0].price", notNullValue())
+            .body("products[0].category", not(emptyOrNullString()));
     }
 
     @Test
     void verifyGetProductByIdReturnsProductDetails() {
-
         given()
             .baseUri(BASE_URL)
         .when()
@@ -64,26 +62,23 @@ public class ProductsApiTest {
 
     @Test
     void verifyGetNonExistingProductReturnsEmptyBody() {
-
         given()
             .baseUri(BASE_URL)
         .when()
             .get("/products/999999")
         .then()
-            .statusCode(200)
-            .body(is(emptyString()));
+            .statusCode(404)
+            .body("message", not(emptyOrNullString()));
     }
 
     @Test
     void verifyCreateProductReturnsCreatedProduct() {
-
         String requestBody = """
                 {
                     "title": "QA Automation Test Product",
                     "price": 29.99,
                     "description": "Product created for API automation testing",
-                    "image": "https://i.pravatar.cc",
-                    "category": "electronics"
+                    "category": "beauty"
                 }
                 """;
 
@@ -92,7 +87,7 @@ public class ProductsApiTest {
             .contentType("application/json")
             .body(requestBody)
         .when()
-            .post("/products")
+            .post("/products/add")
         .then()
             .statusCode(201)
             .body("id", notNullValue())
@@ -100,17 +95,14 @@ public class ProductsApiTest {
             .body("price", equalTo(29.99f));
     }
 
-    
     @Test
     void verifyUpdateProductReturnsUpdatedDetails() {
-
         String requestBody = """
                 {
                     "title": "Updated QA Automation Product",
                     "price": 39.99,
                     "description": "Updated product for API testing",
-                    "image": "https://i.pravatar.cc",
-                    "category": "electronics"
+                    "category": "beauty"
                 }
                 """;
 
@@ -129,7 +121,6 @@ public class ProductsApiTest {
 
     @Test
     void verifyDeleteProductReturnsSuccess() {
-
         given()
             .baseUri(BASE_URL)
         .when()
@@ -138,5 +129,4 @@ public class ProductsApiTest {
             .statusCode(200)
             .body("id", equalTo(1));
     }
-
 }
