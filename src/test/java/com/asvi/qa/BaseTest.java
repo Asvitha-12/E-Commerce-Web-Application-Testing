@@ -16,6 +16,11 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
+        // Run Chrome without a visible browser window in CI environments.
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
