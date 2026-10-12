@@ -1,6 +1,10 @@
 # Maven build output
 target/
 
+# Allure test results and generated HTML reports
+allure-results/
+allure-report/
+
 # Java crash and diagnostic logs
 hs_err_pid*.log
 replay_pid*.log
