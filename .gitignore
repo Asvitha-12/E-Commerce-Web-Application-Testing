@@ -1,0 +1,17 @@
+# Maven build output
+target/
+
+# Java crash and diagnostic logs
+hs_err_pid*.log
+replay_pid*.log
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Compiled Java files
+*.class
+
+# Operating system files
+.DS_Store
+Thumbs.db
