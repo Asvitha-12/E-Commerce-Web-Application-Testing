@@ -2,11 +2,13 @@ package com.asvi.qa;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.PageLoadStrategy;
 
+@ExtendWith(FailureScreenshotExtension.class)
 public class BaseTest {
 
     protected WebDriver driver;
@@ -23,6 +25,10 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 
     @AfterEach
